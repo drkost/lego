@@ -52,4 +52,5 @@ test.describe('Add to Cart Tests', () => {
     const shoppingCartBadgeText = await shoppingCartPage.getShoppingCartBadgeText();
     expect(shoppingCartBadgeText).toBe('2');
   });
+  
 });
