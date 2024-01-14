@@ -1,4 +1,4 @@
-name: Smoke Tests run as part of the build
+name: Manually Run Workflow
 on: workflow_dispatch
 jobs:
   test:
