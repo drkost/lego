@@ -4,7 +4,7 @@ export default class ShoppingCartPage extends BasePage {
     private shoppingCartBadge = '.fa-layers-counter.shopping_cart_badge';
     private shoppingCart = '.fa-shopping-cart';
     private cartQuantity = '.cart_quantity';
-    private checkout = '. checkout_button';
+    private checkoutButton = '.checkout_button';
 
   async getShoppingCartBadgeText(): Promise<string | null> {
     const textContent = await this.page.textContent(this.shoppingCartBadge);
@@ -21,6 +21,6 @@ export default class ShoppingCartPage extends BasePage {
   }
 
   async Checkout(): Promise<void> {
-    await this.page.click(this.checkout);
+    await this.page.click(this.checkoutButton);
   }
 }
