@@ -1,8 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, TestInfo } from '@playwright/test';
 import ProductListPage from '../pages/ProductListPage';
 import ProductPage from '../pages/ProductPage';
 import LoginPage from '../pages/LoginPage';
 import ShoppingCartPage from '../pages/ShoppingCartPage';
+import { setup, teardown } from '../GlobalSetup';
+
+test.beforeEach(async ({}, testInfo: TestInfo) => {
+  const browserType = testInfo.project.name as 'chromium' | 'firefox' | 'webkit';
+  await setup(browserType);
+});
+
+test.afterEach(teardown);
 
 test.describe('Add to Cart Tests', () => {
 
