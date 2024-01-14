@@ -1,6 +1,6 @@
 import BasePage from './BasePage';
 
-const ProductListPageData = {
+const ProductListUrl = {
   expectedUrl: 'https://www.saucedemo.com/v1/inventory.html',
 };
 
@@ -10,7 +10,7 @@ export default class ProductListPage extends BasePage {
 
 
   get expectedUrl(): string {
-    return ProductListPageData.expectedUrl;
+    return ProductListUrl.expectedUrl;
   }
 
   async clickRandomProduct(): Promise<void> {
