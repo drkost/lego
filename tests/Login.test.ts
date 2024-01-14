@@ -1,7 +1,15 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, TestInfo  } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
 import ProductListPage from '../pages/ProductListPage';
 import LoginTestData from '../data/loginTestData';
+import { setup, teardown } from '../GlobalSetup';
+
+test.beforeEach(async ({}, testInfo: TestInfo) => {
+  const browserType = testInfo.project.name as 'chromium' | 'firefox' | 'webkit';
+  await setup(browserType);
+});
+
+test.afterEach(teardown);
 
 test.describe('Login Tests', () => {
   const locales = ['en', 'fr']; 

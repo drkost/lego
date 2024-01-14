@@ -1,10 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, TestInfo } from '@playwright/test';
 import ProductListPage from '../pages/ProductListPage';
 import CheckoutInfoPage from '../pages/CheckoutInfoPage'
 import LoginPage from '../pages/LoginPage';
 import ShoppingCartPage from '../pages/ShoppingCartPage';
+import { setup, teardown } from '../GlobalSetup';
 
-test.describe('Add to Cart Tests', () => {
+test.beforeEach(async ({}, testInfo: TestInfo) => {
+  const browserType = testInfo.project.name as 'chromium' | 'firefox' | 'webkit';
+  await setup(browserType);
+});
+
+test.afterEach(teardown);
+
+test.describe('Checkout tests', () => {
 
   test('TC31 Proceed to Checkout info page @smoke @regression', async ({ page }) => {
     const loginPage = new LoginPage(page);

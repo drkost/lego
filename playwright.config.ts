@@ -4,28 +4,23 @@ export default {
   projects: [
     // Configuration for Chrome (Desktop)
     {
-      name: 'chrome-desktop',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    },
-    // Configuration for Mozilla (Desktop)
-    {
-      name: 'mozilla-desktop',
-      use: { ...devices['Desktop Firefox'], channel: 'firefox' },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], browserName: 'chromium' },
     },
     // Configuration for Safari (Desktop)
     {
-      name: 'safari-desktop',
-      use: { ...devices['Desktop Safari']},
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], browserName: 'webkit'},
     },
     // Configuration for iPhone 12 (Mobile)
     {
-      name: 'iphone12',
-      use: { ...devices['iPhone 12']},
+      name: 'webkit',
+      use: { ...devices['iPhone 12'], browserName: 'webkit'},
     },
     // Configuration for Galaxy S21 (Mobile)
     {
-      name: 'galaxyS21',
-      use: { ...devices['Galaxy S21'], channel: 'chrome' },
+      name: 'chromium',
+      use: { ...devices['Galaxy S21'], browserName: 'chromium' },
     },
   ],
 };
