@@ -7,8 +7,8 @@ Lego Education Challange
  - Effective handling of multiple locales and translations in automations scripts.
  - POM
  - CI/CD
-      * Tests with @Smoke tag are run on every PR
-      * Tests with @Regression tag are run every night @ 00:00
+      * Tests with @Smoke tag are run on every PR - 2 workers
+      * Tests with @Regression tag are run every night @ 00:00 - 4 workers
       * Manually run form github UI workflow (smoke tests)
 
 ### Prerequisites
