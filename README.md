@@ -9,6 +9,7 @@ Lego Education Challange
  - CI/CD
       * Tests with @Smoke tag are run on every PR
       * Tests with @Regression tag are run every night @ 00:00
+      * Manually run form github UI workflow (smoke tests)
 
 ### Prerequisites
 
