@@ -1,5 +1,5 @@
 name: Smoke Tests run as part of the build
-on: workflow_dispatch
+on:
   push:
     branches: [ main, master ]
   pull_request:
