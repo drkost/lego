@@ -1,4 +1,4 @@
-name: Smoke Tests
+name: Smoke Tests run as part of the build
 on:
   push:
     branches: [ main, master ]
@@ -18,10 +18,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --grep=@regression --workers=2
+      run: npx playwright test --grep=@smoke --workers=2
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 30
+        retention-days: 7
