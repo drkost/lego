@@ -1,6 +1,6 @@
 # Project name
 
-Lego Education Challange
+Lego Education Challenge
 
 ## Project info
 
