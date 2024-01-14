@@ -1,30 +1,31 @@
-import { BasePage } from './BasePage';
+import { Page } from 'playwright';
+import BasePage from './BasePage';
+import LoginTestData from '../data/loginTestData';
 
-export class LoginPage extends BasePage {
-  private readonly usernameInputSelector = '[data-testid="username-input"]';
-  private readonly passwordInputSelector = '[data-testid="password-input"]';
-  private readonly loginButtonSelector = '[data-testid="login-button"]';
-  private readonly errorMessageSelector = '[data-testid="error-message"]';
+export default class LoginPage extends BasePage {
+  usernameInputSelector: string;
+  passwordInputSelector: string;
+  loginButtonSelector: string;
+  errorMessage: string;
 
-  async enterUsername(username: string) {
-    await this.page.fill(this.usernameInputSelector, username);
+  constructor(page: Page) {
+    super(page);
+    this.usernameInputSelector = '[data-test="username"]';
+    this.passwordInputSelector = '[data-test="password"]';
+    this.loginButtonSelector = '#login-button';
+    this.errorMessage = '[data-test="error"]';
   }
 
-  async enterPassword(password: string) {
-    await this.page.fill(this.passwordInputSelector, password);
-  }
-
-  async clickLoginButton() {
+  async successfulLogin(username: string = LoginTestData.validUsername, password: string = LoginTestData.validPassword): Promise<void> {
+    await this.navigateTo(''); // Navigate to the base URL
+    await this.page.type(this.usernameInputSelector, username);
+    await this.page.type(this.passwordInputSelector, password);
     await this.page.click(this.loginButtonSelector);
-  }
 
-  async getErrorMessage() {
-    return this.page.textContent(this.errorMessageSelector);
-  }
-
-  async login(username: string, password: string) {
-    await this.enterUsername(username);
-    await this.enterPassword(password);
-    await this.clickLoginButton();
+  }async unsuccessfulLogin(username: string = LoginTestData.invalidUsername, password: string = LoginTestData.invalidPassword): Promise<void> {
+    await this.navigateTo(''); // Navigate to the base URL
+    await this.page.type(this.usernameInputSelector, username);
+    await this.page.type(this.passwordInputSelector, password);
+    await this.page.click(this.loginButtonSelector);
   }
 }
