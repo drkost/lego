@@ -1,5 +1,5 @@
 name: Regression tests run every night
-on: workflow_dispatch 
+on: 
   schedule:
   - cron: "0 0 * * *"
 jobs:
