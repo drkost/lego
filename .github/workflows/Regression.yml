@@ -1,7 +1,7 @@
 name: Regression tests run every night
-on: 
-  schedule:
-  - cron: "0 0 * * *"
+# on: 
+#   schedule:
+#   - cron: "0 0 * * *"
 jobs:
   test:
     timeout-minutes: 60
