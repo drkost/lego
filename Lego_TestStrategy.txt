@@ -1,0 +1,126 @@
+1. TEST SCOPE
+  In-Scope:
+	Core features and functionality as specified in the requirements.
+	Cross-browser and cross-device compatibility.
+	Performance, including load times and responsiveness.
+	Offline capabilities utilizing service workers.
+	Push notifications, background sync, and other PWA-specific functionalities.
+	Integration with third-party services and APIs.
+	Security aspects, such as data encryption and protection against common vulnerabilities.
+	Usability and user experience.
+	Accessibility for users with disabilities.
+  Out-of-Scope:
+	Detailed testing of third-party services or APIs (covered in integration testing).
+	Testing on unsupported browsers or devices.
+	In-depth security testing (covered in a separate security testing phase).
+
+
+2. TEST APPROACH
+  Testing Levels:
+	Unit Testing on Build - Minimum 80% test coverage for individual components.
+	Integration Testing on Pull Request - Full test coverage(cover all API Methods with correct data) to ensure seamless communication between modules.
+	System Testing after Deploy on Dev - Full requirements coverage (RTM) - Manual & Automated end-to-end validation.
+  Testing Types:
+	Functional testing for features and user interactions.
+	Non-functional testing for performance, security, and accessibility.
+	Exploratory testing.
+	Regression testing.
+	Smoke testing(Post-release).
+  Agile Approach:
+	Continuous testing and frequent feedback loops.
+	Align testing efforts with development progress - Sprint reviews/Demos.
+
+
+3. TEST PROCESS
+  Test process on a Jira issue level is done on DEV environment
+    1. A Jira issue is taken in a Sprint (moved from Backlog to To Do column).
+	2. Review the requirements(during Grooming/Refinement sessions) - Acceptance Criteria must be independently testable and have a clear PASS or FAIL.
+	3. Test Case Design - add test cases in Zephyr that cover the Acceptance criteria.
+		3.1. Use common sense to put respective pre-created labels - Sprint version, Regression, Automated, Smoke
+		3.2. Each test case have to be asigned to respective Jira issue for traceability (RTM)
+		3.3. Each test case have to be asigned to pre-created component/epic (e.g. Checkout) .
+	4. Automate all test cases labeled Automated in Cypress/Playwright automated test suites.
+		4.1. Put respective tags (e.g. @Regression, @Checkout) - so each component/feature tests could be executed independently. 
+	5. A Jira issue is set to status QA/Test by Developer when it is implemented and deployed on Dev.
+	6. Assign yourself the Jira issue with status QA/Test.
+	7. Verify Jira issue description and design closely.
+	8. Run all automated tests using the respective component test tags.
+	9. Put respective test notes in the Jira issue as a comment, including full description for all problems, screenshots and/or steps to reproduce.
+	10. Change status to In Progress/In Development when problems are found, requirements are not completed or do not match the design. 
+	11. Change status to Done when requirements are completed and match the design.
+
+  Test process on a Release level(Full regression testing) is done on DEMO environment
+	1. Create Test Cycle in Zephyr. Test Cycle name equals the respective Release Version (e.g. Release-V21) 
+	2. Add Description and Details Folder name that equals the respective Release Version (e.g. Release-V21) 
+	3. Add all Test Cases labeled Regression
+	4. Execute all test cases(Manual & Automated) in the release test cycle (Pass/Fail/Block). 
+	5. Log bugs and set Severity/Component(Epic)/Label (e.g. Critical/Checkout/Zephyr-V21). 
+	6. Link failed test cases to bugs (existing or new). 
+	7. Link blocked test cases to Jira issues. 
+	8. Hotfix – test the fix by executing all failed test cases.
+	9. Change Fail test case status to Pass. 
+	10. Smoke testing - complete for all components. 
+	11. Deploy on RPOD
+	12. Smoke testing - complete for all components.
+	13. Sign off
+
+
+4. TEST PLAN
+  Most important features:
+	Login
+	Add to Cart
+	Checkout
+  Least Important features:
+	Logout
+	Hamburger menu
+	Product filter
+
+
+5. TEST ENVIRONMENT
+  Environments:
+	DEV, DEMO, PROD
+  Browsers:
+	Chrome, Firefox, Safari, Edge.
+  Devices:
+	Desktops, laptops, tablets, and mobile devices with various screen sizes.
+  Operating Systems:
+	Test on Windows, macOS, iOS, Android.
+  Network Conditions:
+	Test under different network speeds (3G, 4G, Wi-Fi) to assess performance and offline functionality.
+
+
+6. CI/CD
+  6.1. Unit & Intergration tests are run on every Build.
+  6.1. Automatically automated Smoke tests after every DEV&DEMO environments deploy.
+  6.2. Automated regression suite is executed every night - Github workflow automations.
+
+
+7. TRACEABILITY
+  Requirements Traceability Matrix (RTM):
+	Establish a traceability matrix linking test cases in Zephyr to the corresponding JIRA requirements.
+	Ensure comprehensive coverage of all specified features and functionalities using BDD language CUCUMBER.
+
+
+7. TEST TOOLS
+  Automation Tools:
+	Playwright or Cypress for functional testing.
+	Apache JMeter or Gatling for performance testing.
+	OWASP ZAP for security testing.
+  Collaboration Tools:
+	Jira for requirements management and collaboration.
+	Zephyr for test case management and collaboration.
+	Slack real-time communication.
+
+
+8. RELEASE CONTROL
+  Continuous Integration/Continuous Deployment (CI/CD):
+	Unit/Integration/System Testing in CI/CD pipelines for automated testing and deployment.
+  Release Criteria:
+	Ensure all Critical and High-Severity issues are resolved before release.
+  Deployment Plan:
+	All test are executed on Demo Environment
+	Hotfix is prepared, deployed and retested on Demo Environment for Critical&High severity bugs.
+	Include rollback and hotfix procedures in case of unforeseen issues post-release.
+  User Feedback and Monitoring:
+	Implement monitoring tools to collect user feedback and performance metrics post-release.
+	Use analytics tools to track user behavior and identify potential issues.

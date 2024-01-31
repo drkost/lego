@@ -1,0 +1,218 @@
+1.LOGIN
+
+  Scenario 1: TC11 Successful Login
+	Given the user is on the login page
+	When the user enters valid credentials (username and password)
+	And clicks on the "Login" button
+	Then the user should be redirected to the All Items page
+	And a list of products should be displayed
+
+  Scenario 2: TC12 Unsuccessful Login (Incorrect Password)
+	Given the user is on thep login page
+	When the user enters a valid username and an incorrect password
+	And clicks on the "Login" button
+	Then an error message indicating "Epic sadface: Username and password do not match any user in this service" is displayed
+	And the user should remain on the login page
+
+  Scenario 3: TC13 Unsuccessful Login (Invalid Username)
+	Given the user is on the login page
+	When the user enters an invalid username and a valid password
+	And clicks on the "Login" button
+	Then an error message indicating "Epic sadface: Username and password do not match any user in this service" is displayed
+	And the user should remain on the login page
+
+  Scenario 4: TC14 Unsuccessful Login (Empty Password)
+	Given the user is on the login page
+	When the user leaves the username and password fields empty
+	And clicks on the "Login" button
+	Then an error message indicating "Epic sadface: Password is required" is displayed
+	And the user should remain on the login page
+	
+  Scenario 5: TC15 Unsuccessful Login (Empty Username)
+	Given the user is on the login page
+	When the user leaves the username and password fields empty
+	And clicks on the "Login" button
+	Then an error message indicating "Epic sadface: Username is required" is displayed
+	And the user should remain on the login page
+
+  Scenario 6: TC16 Unsuccessful Login (Locked Username)
+	Given the user is on the login page
+	When the user leaves the username and password fields empty
+	And clicks on the "Login" button
+	Then an error message indicating that "Epic sadface: Sorry, this user has been locked out."
+	And the user should remain on the login page
+	
+	
+2.CART
+
+  Scenario 1: TC21 Add Product to Cart (Product page)
+	Given the user is on the product page
+	When the user clicks on the "Add to Cart" button for a specific product
+	Then the product should be added to the shopping cart
+	And the shopping cart icon should display the updated item count
+	
+  Scenario 2: TC22 Add Product to Cart (All Items page)
+	Given the user is on the All Items page
+	When the user clicks on the "Add to Cart" button for a specific product
+	Then the product should be added to the shopping cart
+	And the shopping cart icon should display the updated item count
+	
+  Scenario 3: TC23 Add Multiple Products to Cart
+	Given the user is on the All Items page
+	When the user clicks on the "Add to Cart" button for multiple products
+	Then all selected products should be added to the shopping cart
+	And the shopping cart icon should display the cumulative item count
+
+  Scenario 4: TC24 View Cart After Adding Products
+	Given the user has added products to the shopping cart
+	When the user clicks on the "Cart" icon
+	Then the user should be redirected to the shopping cart page
+	And the added products should be listed in the cart with details
+
+  Scenario 5: TC25 Remove Product from Cart
+	Given the user has products in the shopping cart
+	When the user clicks on the "Remove" button next to a product in the cart
+	Then the selected product should be removed from the cart
+	And the shopping cart icon should display the updated item count
+	
+  Scenario 6: TC26 Remove Product from Cart (Product Page)
+    Given the user is on the product page
+	And the user has added the product to cart
+	When the user clicks on the "Remove" button
+	Then the shopping cart icon should display the updated item count
+	And the button text is "Add To Cart"
+	
+  Scenario 7: TC27 Remove Product from Cart ( All Items page)
+	Given the user is on the All Items page
+	And the user has added the product to cart
+	When the user clicks on the "Remove" button
+	Then the shopping cart icon should display the updated item count
+	And the button text is "Add To Cart"
+
+  Scenario 8: TC28 Continue Shopping After Adding to Cart
+	Given the user has added products to the shopping cart
+	And the user clicks on the "Cart" icon
+	And the user is redirected to the shopping cart page
+	When the user clicks on the "Continue Shopping" button
+	Then the user is navigated to the Products page
+	And the shopping cart icon should still display the updated item count
+
+  Scenario 9: TC29 Continue Shoping After Logoug and Login
+	Given the user has added products to the shopping cart
+	And the user clicks on the "Cart" icon
+	And the user is redirected to the shopping cart page
+	When the user clicks on the "Logout" button from the hamburger menu
+	And the user is navigated to the login page
+	And the user is login successfully
+	Then the user is navigate to Products page
+	And the shopping cart icon should still display the updated item count
+	
+3.CHECKOUT
+
+  Scenario 1: TC31 Proceed to Checkout 
+	Given the user has added products to the shopping cart
+	When the user clicks on the "Checkout" button
+	Then the user should be redirected to the checkout-step-one page
+	And the user should be prompted to provide First Name, Last Name and Zip/Postal code.
+
+  Scenario 2: TC32 Provide Information
+	Given the user is on the checkout-step-one page
+	When the user provides valid information
+	And clicks on the "Continue" button
+	Then the user should be redirected to checkout-step-two page - order confirmation page
+	And the Products Quantity and Description is included
+	And the Payment Information is included
+	And the Total Price should include the selected shipping costs
+	
+  Scenario 3: TC33 Missing Information (First Name)
+	Given the user is on the checkout-step-one page
+	When the user provides valid information
+	And empty First Name
+	And clicks on the "Continue" button
+	Then an error message indicating "Error: First Name is required"  is displayed
+	And the user should remain on the checkout-step-one page
+	
+  Scenario 4: TC34 Missing Information (Last Name)
+	Given the user is on the checkout-step-one page
+	When the user provides valid information
+	And empty First Name
+	And clicks on the "Continue" button
+	Then an error message indicating "Error: Last Name is required"  is displayed
+	And the user should remain on the checkout-step-one page	
+	
+  Scenario 5: TC35 Missing Information (Zip/Postal Code)
+	Given the user is on the checkout-step-one page
+	When the user provides valid information
+	And empty First Name
+	And clicks on the "Continue" button
+	Then an error message indicating "Error: Postal Code is required"  is displayed
+	And the user should remain on the checkout-step-one page
+	
+  Scenario 6: TC36 Complete Checkout
+	Given the user is on the checkout-step-two page
+	When clicks on the "Finish" button
+	Then the user should be redirected to the checkout-complete page
+	And Thank You message is dispalyed
+	And Successfull message is displayed
+	
+  Scenario 7: TC37 Cancel Checkout
+	Given the user is on the checkout-step-two page
+	When clicks on the "Cancel" button
+	Then the user should be redirected to the All Items page
+	
+	
+4.LOGOUT
+
+  Scenario 1: TC41 Logout
+	Given the user is logged in
+	When the user clicks on the Hamburger Menu icon
+	And clicks on Logout option from the dropdown
+	Then the user should be logged out
+	And redirected to the home page
+	
+
+5.PRODUCT SORTING
+  Scenario 1: TC51 Sort by Price (Low to High)
+	Given the user is on the All Items page
+	When the user selects the "Price (Low to High)" option from the Product Sorting dropdown
+	Then the products should be re-ordered based on ascending price
+	And the user should see the updated product list with prices in ascending order
+
+  Scenario 2: TC52 Sort by Price (High to Low)
+	Given the user is on the All Items page
+	When the user selects the "Price (High to Low)" option from the Product Sorting dropdown
+	Then the products should be re-ordered based on descending price
+	And the user should see the updated product list with prices in descending order
+
+  Scenario 3: TC53 Sort Products by Name (A to Z)
+	Given the user is on the product list page
+	When the user selects the "Name (A to Z)" option from the Product Sorting dropdown
+	Then the products should be re-ordered alphabetically by product name (A to Z)
+	And the user should see the updated product list with names in alphabetical order
+
+  Scenario 4: TC54 Sort Products by Name (Z to A)
+	Given the user is on the product list page
+	When the user selects the "Name (Z to A)" option from the Product Sorting dropdown
+	Then the products should be re-ordered alphabetically by product name (Z to A)
+	And the user should see the updated product list with names in reverse alphabetical order
+
+
+6.HAMBURGER MENU
+
+  Scenario 1: TC61 Open Hamburger Menu
+	Given the user is logged in
+	When the user clicks on the hamburger menu icon
+	Then the hamburger menu should open
+	And the user should see navigation options, including links to different sections of the application
+
+  Scenario 2: TC62 Close Hamburger Menu
+	Given the user has opened the hamburger menu
+	When the user clicks outside the menu or on the close button within the menu
+	Then the hamburger menu should close
+	And the user should be on the same page where the menu was opened
+
+  Scenario 3: TC63 Navigate to All Items page from Hamburger Menu
+	Given the user has opened the hamburger menu
+	When the user clicks on the "Home" link within the menu
+	Then the user should be redirected to the home page
+	And the hamburger menu should close
